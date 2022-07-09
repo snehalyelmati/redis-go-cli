@@ -19,16 +19,16 @@ func main() {
 		DB:       0,
 	})
 
-	count := 10
+	// count := 10
 
 	// set some dummy data
-	keys := utils.InsertRandomData(rdb, ctx, count)
+	// keys := utils.InsertRandomData(rdb, ctx, count)
 
 	// get all the key-value pairs
 	utils.PrintExistingData(rdb, ctx)
 
 	// deleting dummy data
-	utils.DeleteData(rdb, ctx, keys)
+	// utils.DeleteData(rdb, ctx, keys)
 
 	// print all existing config
 	utils.PrintExistingConfig(rdb, ctx)
