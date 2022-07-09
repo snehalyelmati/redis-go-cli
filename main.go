@@ -26,7 +26,7 @@ var (
 )
 
 func main() {
-	fmt.Println("Redis Go CLI - Beta v2.0.0")
+	fmt.Println("Redis Go CLI")
 	flag.Parse()
 
 	ctx := context.Background()
