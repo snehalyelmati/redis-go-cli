@@ -29,4 +29,9 @@ func main() {
 
 	// deleting dummy data
 	utils.DeleteData(rdb, ctx, keys)
+
+	// print all existing config
+	utils.PrintExistingConfig(rdb, ctx)
+
+	// TODO: use flags to modularize execution
 }

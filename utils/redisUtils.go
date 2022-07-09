@@ -72,3 +72,8 @@ func DeleteAllData(rdb *redis.Client, ctx context.Context) {
 	}
 	fmt.Println("Done.")
 }
+
+func PrintExistingConfig(rdb *redis.Client, ctx context.Context) {
+	fmt.Println("Existing config:")
+	fmt.Println(TransformData(rdb.ConfigGet(ctx, "*").Val()))
+}
