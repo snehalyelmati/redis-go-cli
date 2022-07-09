@@ -32,7 +32,7 @@ func main() {
 
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     *HOSTNAME + ":" + strconv.Itoa(*PORT),
-		Password: "",
+		Password: *PASSWORD,
 		DB:       0,
 	})
 	if err := rdb.Ping(ctx).Err(); err != nil {
