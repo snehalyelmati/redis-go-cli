@@ -1,6 +1,6 @@
 # Redis Go CLI
 
-Easy to use CLI application to view data/configuration in Redis.
+Easy to use, configurable CLI application to test connectivity, view data/configuration in Redis built with Go.
 
 Options available:
 - `-data`: Prints all the existing data on Redis. 
@@ -13,6 +13,7 @@ Options available:
 Settings:
 - `-hostname`: Sets the hostname of the Redis instance to connect(default is localhost).
 - `-port`: Sets the port of the Redis instance to connect(default is 6379).
+- `-username`: Sets the username of the Redis instance to connect(default is empty).
 - `-password`: Sets the password of the Redis instance to connect(default is empty).
 
 ## How to use
@@ -23,5 +24,5 @@ $ go build -o bin/rgcli_version
 
 2. Run the executable file with the required flags,
 ```
-$ rgcli_version -hostname=redis-xyz.com -port=4999 -password=1234 -data -config
+$ rgcli_version -hostname=redis-xyz.com -port=4999 -username=redis123 -password=1234 -data -config
 ```
