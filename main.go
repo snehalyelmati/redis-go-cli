@@ -13,6 +13,7 @@ import (
 var (
 	HOSTNAME = flag.String("hostname", "localhost", "Hostname of the Redis server")
 	PORT     = flag.Int("port", 6379, "Port number of the Redis server")
+	USERNAME = flag.String("username", "", "Username for authentication")
 	PASSWORD = flag.String("password", "", "Password for authentication")
 
 	config = flag.Bool("config", false, "Boolean flag to print Redis config")
@@ -32,6 +33,7 @@ func main() {
 
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     *HOSTNAME + ":" + strconv.Itoa(*PORT),
+		Username: *USERNAME,
 		Password: *PASSWORD,
 		DB:       0,
 	})
