@@ -2,31 +2,34 @@
 
 Easy to use, configurable CLI application to test connectivity, view data/configuration in Redis built with Go.
 
-Options available:
+### Features:
 
 - `-data`: Prints all the existing data on Redis.
 - `-config`: Prints all the current Redis config.
+- `-configWithPattern`: Prints the config which matches the specified pattern.
 - `-testReadWrite`: Tests the Redis connection by setting and deleting sample data based on the `-count` flag.
 - `-insertSampleData`: Inserts sample data into Redis based on the `-count` flag.
 - `-deleteAllData`: Deletes all existing data in the Redis instance.
-- `-count`: Number of records to insert and/or delete(default is 5 records). Applicable to `-insertSampleData` and `-testReadWrite`.
 
-Settings:
+### Optional Parameters:
 
 - `-hostname`: Sets the hostname of the Redis instance to connect(default is localhost).
 - `-port`: Sets the port of the Redis instance to connect(default is 6379).
 - `-username`: Sets the username of the Redis instance to connect(default is empty).
 - `-password`: Sets the password of the Redis instance to connect(default is empty).
+- `-count`: Number of records to insert and/or delete(default is 5 records). Applicable to `-insertSampleData` and `-testReadWrite`.
 
-## How to use
+## Installation
 
-1. To build the executable use the following command,
+To build the executable with Go use the following command or use one of the pre-built binaries from the `bin` folder.
 
 ```
 $ go build -o bin/rgcli_version
 ```
 
-2. Run the executable file with the required flags,
+## Usage
+
+Run the executable file with the required flags,
 
 ```
 // to test connectivity
@@ -44,6 +47,9 @@ $ rgcli_version -hostname=redis-xyz.com -port=4999 -username=redis123 -password=
 // to get data and config
 $ rgcli_version -data -config
 
+// to get config matching a specific pattern
+$ rgcli_version -configWithPattern="timeout"
+
 // inserts sample data based on the count argument
 $ rgcli_version -insertSampleData -count=10
 
@@ -51,7 +57,7 @@ $ rgcli_version -insertSampleData -count=10
 $ rgcli_version -testReadWrite -count=10
 ```
 
-3. (Optional) To compile for a specific OS use the `GOOS` env variable, if `direnv` is used modify the `.envrc` file.
+(Optional) To compile for a specific OS use the `GOOS` env variable, if `direnv` is used modify the `.envrc` file.
 
 ```
 // to compile binary for linux
