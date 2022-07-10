@@ -88,8 +88,8 @@ func DeleteAllData(rdb *redis.Client, ctx context.Context) {
 	fmt.Println("Done.")
 }
 
-func PrintExistingConfig(rdb *redis.Client, ctx context.Context) {
+func PrintConfig(rdb *redis.Client, ctx context.Context, pattern string) {
 	fmt.Println("CONFIG:")
-	fmt.Println(TransformData(rdb.ConfigGet(ctx, "*").Val()))
+	fmt.Println(TransformData(rdb.ConfigGet(ctx, pattern).Val()))
 	fmt.Println()
 }

@@ -16,8 +16,9 @@ var (
 	USERNAME = flag.String("username", "", "Username for authentication")
 	PASSWORD = flag.String("password", "", "Password for authentication")
 
-	config = flag.Bool("config", false, "Boolean flag to print Redis config")
-	data   = flag.Bool("data", false, "Boolean flag to print all the data in Redis")
+	config            = flag.Bool("config", false, "Boolean flag to print Redis config")
+	data              = flag.Bool("data", false, "Boolean flag to print all the data in Redis")
+	configWithPattern = flag.String("configWithPattern", "", "To get configuration with pattern")
 
 	testReadWrite    = flag.Bool("testReadWrite", false, "Test the Redis connection by reading and writing sample data (default is 5 records)")
 	count            = flag.Int("count", 5, "Number of random records to insert and/or delete (default is 5)")
@@ -53,12 +54,17 @@ func main() {
 
 	// get all config
 	if *config {
-		utils.PrintExistingConfig(rdb, ctx)
+		utils.PrintConfig(rdb, ctx, "*")
 	}
 
 	// get all data
 	if *data {
 		utils.PrintAllData(rdb, ctx)
+	}
+
+	// get config with pattern
+	if *configWithPattern != "" {
+		utils.PrintConfig(rdb, ctx, *configWithPattern)
 	}
 
 	// insert sample data
