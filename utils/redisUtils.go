@@ -69,10 +69,12 @@ func InsertRandomData(rdb *redis.Client, ctx context.Context, count int) []strin
 
 func DeleteData(rdb *redis.Client, ctx context.Context, keys []string) {
 	fmt.Println("Deleting data for:", keys)
-	err := rdb.Del(ctx, keys...).Err()
-	if err != nil {
-		fmt.Println("Error while deleting")
-		panic(err)
+	for i := 0; i < len(keys); i++ {
+		err := rdb.Del(ctx, keys[i]).Err()
+		if err != nil {
+			fmt.Println("Error while deleting key:", keys[i])
+			panic(err)
+		}
 	}
 	fmt.Println("Done.")
 }
@@ -80,11 +82,7 @@ func DeleteData(rdb *redis.Client, ctx context.Context, keys []string) {
 func DeleteAllData(rdb *redis.Client, ctx context.Context) {
 	fmt.Println("DELETING ALL KEYS!!!")
 
-	err := rdb.Del(ctx, GetExistingKeysWithPattern(rdb, ctx, "*")...).Err()
-	if err != nil {
-		fmt.Println("Error while deleting")
-		panic(err)
-	}
+	DeleteData(rdb, ctx, GetExistingKeysWithPattern(rdb, ctx, "*"))
 	fmt.Println("Done.")
 }
 
