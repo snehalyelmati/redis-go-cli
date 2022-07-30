@@ -2,8 +2,11 @@ package main
 
 import (
 	"context"
+	crypto_rand "crypto/rand"
+	"encoding/binary"
 	"flag"
 	"fmt"
+	math_rand "math/rand"
 	"strconv"
 
 	"github.com/go-redis/redis/v9"
@@ -44,6 +47,14 @@ func main() {
 		fmt.Println("Redis connection status: SUCCESS")
 	}
 	fmt.Println()
+
+	// initialize non-deterministic random number
+	var b [8]byte
+	_, err := crypto_rand.Read(b[:])
+	if err != nil {
+		panic("Cannot seed math/rand package with cryptographically secure random number generation...")
+	}
+	math_rand.Seed(int64(binary.LittleEndian.Uint64(b[:])))
 
 	// testReadWrite
 	if *testReadWrite {
